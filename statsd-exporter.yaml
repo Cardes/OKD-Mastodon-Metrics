@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: statsd-exporter
+  namespace: mastodon
+spec:
+  selector:
+    matchLabels:
+      app: statsd-exporter
+  template:
+    metadata:
+      labels:
+        app: statsd-exporter
+    spec:
+      serviceAccountName: mastodon
+      containers:
+      - name: statsd-exporter
+        image: prom/statsd-exporter
+        args:
+          - '--statsd.mapping-config=/tmp/statsd-mapping.yaml'
+        volumeMounts:
+        - name: config-volume
+          mountPath: /tmp/statsd-mapping.yaml
+          subPath: statsd-mapping.yaml
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 9102
+          name: statsd1
+        - containerPort: 9125
+          name: statsd2
+          protocol: TCP
+        - containerPort: 9125
+          name: statsd3
+          protocol: UDP
+      volumes:
+      - name: config-volume
+        configMap:
+          name: statsd-exporter

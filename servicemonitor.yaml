@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: statsd-exporter
+  name: mastodon
+spec:
+  endpoints:
+  - interval: 30s
+    port: statsd1
+    scheme: http
+  selector: {}
