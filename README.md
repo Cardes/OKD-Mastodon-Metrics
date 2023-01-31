@@ -10,10 +10,12 @@ This should work on OKD/Openshift and on clusters where the Prometheus Operator 
 Installation steps:
 - If using Openshift or OKD make sure that User Workload Monitoring is activated
 - adjust values of the mastodon helm chart:
+  ```
   metrics:
     statsd:
       # -- Enable statsd publishing via STATSD_ADDR environment variable
       # -- address consists of <servicename>.<namespace>.svc.cluster.local:9125
       address: "statsd-exporter.mastodon.svc.cluster.local:9125"
+  ```
 - clone the repository and adjust namespace value inside kustomization to your mastodon namespace.
 - apply with oc apply -k .
