@@ -13,7 +13,7 @@ Installation steps:
   metrics:
     statsd:
       # -- Enable statsd publishing via STATSD_ADDR environment variable
-      #address consists of <servicename>.<namespace>.svc.cluster.local:9125
+      # address consists of <servicename>.<namespace>.svc.cluster.local:9125
       address: "statsd-exporter.mastodon.svc.cluster.local:9125"
 - clone the repository and adjust namespace value inside kustomization to your mastodon namespace.
 - apply with oc apply -k .
