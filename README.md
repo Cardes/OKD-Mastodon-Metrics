@@ -5,6 +5,9 @@ The basic setup idea come from this wonderfull post and all credits regarding gr
 
 https://ipng.ch/s/articles/2022/11/27/mastodon-3.html
 
+Based on the wonderful statsd exporter:
+https://github.com/prometheus/statsd_exporter
+
 This should work on OKD/Openshift and on clusters where the Prometheus Operator is installed and watches the needed namespaces.
 
 Installation steps:
